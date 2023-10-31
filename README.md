@@ -1,5 +1,10 @@
+# Set Node Version
 v16.18.0
 
+
+# View Prisma Studio
+
+npx prisma studio
 
 # Accept a Payment
 

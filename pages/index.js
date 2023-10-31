@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 
 import Image from 'next/image';
 
+import UserForm from "../components/UserForm";
 import Services from "../components/Services";
 import CheckoutForm from "../components/CheckoutForm";
 import Footer from "../components/Footer";
@@ -77,6 +78,8 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        <UserForm />
 
         <Services />
 
