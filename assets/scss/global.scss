@@ -1,0 +1,365 @@
+@import "mixins";
+@import "settings";
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 16px;
+}
+
+
+body {
+	-webkit-font-smoothing  : antialiased;
+	-moz-osx-font-smoothing : grayscale;
+	margin           : 0;
+	font-family      : 'Poppins', sans-serif;
+	
+}
+
+
+.nav {
+	display         : flex;
+	flex-direction  : row;
+	justify-content : flex-end;
+	padding         : 2rem 3rem;
+	z-index         : 100;
+	position: sticky;
+
+	@include breakpoint(medium) {
+		position: absolute;
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+	}
+		
+	.item {
+		font-family: vortice-concept, sans-serif;
+		font-weight: 400;
+		color: var(--color-secondary);
+		font-size: 1rem;
+		cursor: pointer;
+	}
+	
+	.current {
+		color: var(--color-link-hover);
+	}
+}
+.hero {
+	background-image: url('/bg.webp');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	@include breakpoint(medium) {
+		min-height: 85vh;
+	}
+
+	.header {
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 25vh;
+	
+		@include breakpoint(medium) {
+			min-height: inherit;
+		}
+		.content {
+			color: white;
+			span {
+				text-transform: uppercase;
+			}
+			h1 {
+				font-size: 30px;
+				@include breakpoint(medium) {
+					font-size: 60px;
+				}
+			}
+		}
+	}
+}
+
+
+h1, h2 {
+	margin: 10px 0;
+	font-weight: bold;
+	line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+	@include breakpoint(medium) {
+		font-size: 60px;
+	}
+}
+
+.orange {
+	color: #F15A2E;
+}
+.title-sub {
+	text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 12px;
+}
+
+.container {
+	padding: 60px 20px;
+	max-width: 75em;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.section-text {
+	font-size: 20px;
+	font-weight: bolder;
+	min-height: 125px;
+}
+
+.section-content {
+	@include breakpoint(medium) {
+		grid-template-columns: 1fr 1fr;
+		display: grid;
+		grid-gap: 10px;
+	}
+	.copy {
+		text-align: left;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		h2 {
+			font-size: 36px;
+			text-transform: uppercase;
+		}
+	}
+	.media {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		img {
+			width: 100%;
+			height: auto;
+			margin: 50px 0;
+		}
+	}
+}
+
+button {
+	background-color: #f15b2f;
+    border: 1px solid #f15b2f;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 700;
+    padding: 0px 35px;
+    text-decoration: none;
+	width: fit-content;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #d33d11;
+    	border-color: #d33d11;
+	}
+
+	p {
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+}
+
+.services {
+	background-color: #f2c94c;
+	.container {
+		text-align: left;
+
+		@include breakpoint(medium) {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: 5em 4em;
+		}
+	}
+	.service {
+		margin-bottom: 4em;
+		@include breakpoint(medium) {
+			margin-bottom: 2em;
+		}
+		.title-text {
+			font-size: 38.4px;
+			@include breakpoint(medium) {
+				font-size: 43.2px;
+			}
+			@include breakpoint(large) {
+				font-size: 48px;
+			}
+		}
+		.linethrough, .orange {
+			font-size: 20px;
+			line-height: 1.25;
+			text-transform: uppercase;
+		}
+		.linethrough {
+			color: #666;
+			text-decoration:line-through;
+		}
+		.orange {
+			padding-left: 10px;
+		}
+		.disclaimer {
+		    font-size: 10px;
+		}
+	}
+}
+
+.work {
+	.container {
+		padding: 50px 20px 20px;
+	}
+	.subheader {
+		color: #65529D;
+		font-size: 12px;
+	}
+	.section-content {
+		@include breakpoint(medium) {
+			display: grid;
+			grid-template-columns: 55% 1fr;
+			grid-gap: 2em;
+			align-items: center;
+		}
+		@include breakpoint(large) {
+			grid-template-columns: 65% 1fr;
+		}
+	}
+	.bg {
+		background-image: url('/works-bg.webp');
+		background-position: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		color: white;
+		position: relative;
+		cursor: pointer;
+		transition: .8s ease;
+		background-size: cover;
+		min-height: 400px;
+
+		@include breakpoint(medium) {
+			min-height: 450px;
+			background-size: 100%;
+		}
+
+		@include breakpoint(large) {
+			min-height: 550px;
+			background-size: 100%;
+		}
+		@include breakpoint(xlarge) {
+			min-height: 75vh;
+		}
+
+		&:hover {
+			background-size: 150%;
+			@include breakpoint(large) {
+				background-size: 120%;
+			}
+			
+		}
+		
+		
+		.overlay {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 100%;
+			width: 100%;
+			opacity: 0.5;
+			transition: .5s ease;
+			background-color: #000000;
+			z-index: 0;
+
+			&:hover {
+				background-color: #F15A2E;
+				opacity: 1;
+			}
+		}
+		.header {
+			z-index: 1;
+			color: white;
+		}
+	}
+
+	a {
+		text-decoration: none;
+	}
+}
+
+.footer {
+	background-color: #000;
+	color: white;
+	font-size: 13px;
+	margin: 10px auto 0; 
+
+	.container {
+		text-align: left;
+		@include breakpoint(medium) {
+			display: grid;
+			grid-template-columns: 38% 35% 1fr;
+			grid-gap: 50px;
+			// justify-items: center;
+		}
+	}
+
+	.title {
+		text-transform: uppercase;
+		font-size: 20px;
+		margin: 1em 0;
+	}
+	.marketing {
+		.description {
+			color: #aaa;
+		}
+		.social {
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
+			margin: 2em 0 0;
+			svg {
+				background-color: #333;
+				border-radius: 50%;
+				padding: 8px;
+				font-size: 30px;
+				transition: .5s ease;
+
+				&:hover {
+					background-color: #F15A2E;
+				}
+			}
+			a {
+				color: white;
+			}
+		}
+	}
+	.connected {
+		.links {
+			display: flex;
+			flex-direction: column;
+			a {
+				color: #F15A2E;
+			}
+		}
+	}
+	.copyright {
+		color: #aaa;
+		font-size: 12px;
+		padding-top: 50px;
+
+		@include breakpoint(medium) {
+			padding-top: 0;
+		}
+	}
+}
+
