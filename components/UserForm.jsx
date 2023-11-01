@@ -25,7 +25,7 @@ export default function UserForm() {
 
   function onSubmit(data) {
     console.log('on submit', data);
-    axios.post ('/api/add-customer', data)
+    axios.post ('/api/customer', data)
     .then(res => {
       console.log('form response', res)
       if(res.data.submitted) {

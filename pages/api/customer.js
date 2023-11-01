@@ -6,17 +6,13 @@ export default async function handler(req, res) {
     const formData = req.body;
 
     try {
-
-      const result = await prisma.customer.create({
+      const customer = await prisma.customer.create({
         data: formData
       })
-      
-      console.log('display data', result);
   
-      if(result) {
-  
+      if(customer) {
         res.status(200).send({ 
-          customer: result,
+          customer: customer,
           message: 'Form Successfully Submitted!',
           submitted: true
         });
@@ -24,8 +20,18 @@ export default async function handler(req, res) {
     } catch (err) {
       res.status(500).json({ error: 'failed to load data' })
     }
+  }
 
+  if (req.method === 'GET') {
 
+    try {
+      const customers = await prisma.customer.findMany()
+
+      res.status(200).send({ customers })
+
+      } catch (err) {
+      res.status(500).json({ error: 'failed to load data' })
+    }
   }
   
 };
