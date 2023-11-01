@@ -1,15 +1,7 @@
 # Set Node Version
-v16.18.0
-
-
-# View Prisma Studio
-
-npx prisma studio
-
-# Accept a Payment
-
-Build a simple checkout form to collect payment details. Included are some basic
-build and run scripts you can use to start up the application.
+~~~shell
+$ nvm use 16.18.0
+~~~
 
 ## Running the sample
 
@@ -19,17 +11,17 @@ build and run scripts you can use to start up the application.
 $ npm install
 ~~~
 
-2. _Optional_: download and run the [Stripe CLI](https://stripe.com/docs/stripe-cli)
-~~~shell
-$ stripe listen --forward-to localhost:3000/api/webhooks
-~~~
-
 3. Run the application
 ~~~shell
-$ STRIPE_WEBHOOK_SECRET=$(stripe listen --print-secret) npm run dev
+$ npm run dev
 ~~~
 
 4. Go to [localhost:3000](http://localhost:3000)
+
+5. View Database Records
+~~~shell
+$ npx prisma studio
+~~~
 
 ### Production
 1. Build the application
