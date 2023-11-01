@@ -10,6 +10,7 @@ import axios from 'axios';
 export default function UserForm() {
 
   const [message, setMessage] = useState(null);
+  const [list, setList] = useState(null);
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required('First Name is required.'),
@@ -17,21 +18,33 @@ export default function UserForm() {
     email: Yup.string().required('Email is required.').email('Email is invalid'),
     phone: Yup.string().phone().required('Valid phone number is required.')
   });
+
   const formOptions = { resolver: yupResolver(validationSchema) };
-
-
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
   function onSubmit(data) {
     console.log('on submit', data);
-    axios.post ('/api/customer', data)
+    axios.post('/api/customer', data)
     .then(res => {
       console.log('form response', res)
       if(res.data.submitted) {
         setMessage(res.data.message);
         reset();
+
+        getList();
       }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  function getList() {
+    axios.get('/api/customer')
+    .then(res => {
+      console.log('get list', res);
+      setList(res.data.customers)
     })
     .catch((error) => {
       console.log(error);
@@ -99,7 +112,23 @@ export default function UserForm() {
         <button type="submit">
           <p>Submit</p>
         </button>
-        {message && <div id="form-message"><h3>{message}</h3></div>}
+        {message && (
+          <div id="form-message">
+            <h3>{message}</h3>
+          </div>
+        )}
+        <div className="collection-list">
+          {list && (
+            list.map((item, index) => {
+              return (
+                <div className="list-item" key={index}>
+                  <p>{item.firstName} {item.lastName}</p>
+                </div>
+              )
+            })
+          )}
+        </div>
+
       </form>
     </div>
   );

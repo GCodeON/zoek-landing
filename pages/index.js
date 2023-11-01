@@ -7,7 +7,7 @@ import Image from 'next/image';
 import UserForm from "../components/UserForm";
 import Services from "../components/Services";
 import CheckoutForm from "../components/CheckoutForm";
-import Footer from "../components/Footer";
+
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -15,7 +15,7 @@ export default function App() {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
+
     fetch("/api/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -34,27 +34,7 @@ export default function App() {
   };
 
   return (
-    <div className="App">
-      <main>
-        <div className="hero">
-          <div className="nav">
-            <Image
-              src="/zoek-logo.webp"
-              alt="Zoek Logo"
-              className=""
-              width={100}
-              height={24}
-              priority
-            />
-          </div>
-          <div className="header">
-            <div className="content">
-              <span className="title-sub orange">Insider Exclusive:</span>
-              <h1>NEXT-LEVEL SOCIAL MEDIA <br/> MARKETING</h1>
-            </div>
-          </div>
-        </div>
-
+    <div className="Home">
         <section className="container">
           <p className="section-text">Our Social Media Management services are not available to the public yet, <br/>but we’re giving you insider access to our brand-new service at MARKED-DOWN prices!</p>
           <div className="section-content">
@@ -122,9 +102,7 @@ export default function App() {
           </a>
         </section>
 
-        <Footer/>
-        
-      </main>
+        {/* <Footer/> */}
     </div>
   );
 }
