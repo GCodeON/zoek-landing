@@ -2,7 +2,6 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,11 +12,12 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Client {
+model Customer {
   id Int @id @default(autoincrement())
-  name String
-  phone String
+  firstName String
+  lastName String
   email String
+  phone String
   budget String?
   timeline String?
 }
