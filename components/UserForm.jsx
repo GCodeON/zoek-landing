@@ -1,9 +1,15 @@
+import React, { useEffect, useState } from "react";
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import "yup-phone-lite";
 
+import axios from 'axios';
+
 export default function UserForm() {
+
+  const [message, setMessage] = useState(null);
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required('First Name is required.'),
@@ -14,11 +20,22 @@ export default function UserForm() {
   const formOptions = { resolver: yupResolver(validationSchema) };
 
 
-  const { register, handleSubmit, formState } = useForm(formOptions);
+  const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
   function onSubmit(data) {
     console.log('on submit', data);
+    axios.post ('/api/add-customer', data)
+    .then(res => {
+      console.log('form response', res)
+      if(res.data.submitted) {
+        setMessage(res.data.message);
+        reset();
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
  
   return (
@@ -69,7 +86,7 @@ export default function UserForm() {
           <div className="form-group">
             <label>Timeline</label>
             <select name="timeline" {...register('timeline')}>
-            <option value="none" selected disabled hidden>Select an Option</option> 
+            <option value="none" defaultValue={''} disabled hidden>Select an Option</option> 
               <option value="Days">Days</option>
               <option value="Weeks">Weeks</option>
               <option value="Months">Months</option>
@@ -82,6 +99,7 @@ export default function UserForm() {
         <button type="submit">
           <p>Submit</p>
         </button>
+        {message && <div id="form-message"><h3>{message}</h3></div>}
       </form>
     </div>
   );
