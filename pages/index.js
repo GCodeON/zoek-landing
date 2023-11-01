@@ -3,6 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 import Image from 'next/image';
+import Head from 'next/head'
 
 import Recommendation from "../components/Recommendation";
 import UserForm from "../components/UserForm";
@@ -35,6 +36,9 @@ export default function App() {
 
   return (
     <div className="Home">
+      <Head>
+        <title>Zoek Landing Page</title>
+      </Head>
       <section className="container">
         <p className="section-text">Our Social Media Management services are not available to the public yet, <br/>but we’re giving you insider access to our brand-new service at MARKED-DOWN prices!</p>
         <div className="section-content">
